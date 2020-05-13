@@ -42,9 +42,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // core
-    api core.app_compat
-    api core.core_ktx
-    api core.stdlib
+    implementation core.app_compat
+    implementation core.core_ktx
+    implementation core.stdlib
+
+    // layout
+    implementation ui.recycler_view
 
     // testing
     androidTestImplementation testing.espresso

@@ -49,6 +49,7 @@ dependency_injection.core = "com.google.dagger:dagger:$dependency_version.dagger
 dependency_injection.core_compiler = "com.google.dagger:dagger-compiler:$dependency_version.dagger"
 dependency_injection.android = "com.google.dagger:dagger-android:$dependency_version.dagger"
 dependency_injection.android_compiler = "com.google.dagger:dagger-android-processor:$dependency_version.dagger"
+dependency_injection.android_support = "com.google.dagger:dagger-android-support:$dependency_version.dagger"
 ext.dependency_injection = dependency_injection
 
 def log = [:]

@@ -59,6 +59,7 @@ dependencies {
     kapt dependency_injection.core_compiler
     api dependency_injection.android
     kapt dependency_injection.android_compiler
+    api dependency_injection.android_support
 
     // layout
     api ui.material
