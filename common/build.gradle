@@ -52,6 +52,7 @@ dependencies {
 
     // layout
     implementation ui.recycler_view
+    implementation ui.material
 
     // testing
     androidTestImplementation testing.espresso
