@@ -8,5 +8,15 @@
         android:name=".Koin"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/CoreTheme" />
+        android:theme="@style/CoreTheme">
+
+        <activity android:name="com.github.ekamekas.koin.presentation.splash.SplashActivity">
+            <!-- Main entry activity, should appear in app launcher  -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
 </manifest>
