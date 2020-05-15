@@ -47,6 +47,12 @@ android {
         jvmTarget = "1.8"
     }
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
 }
 
 dependencies {
@@ -61,9 +67,23 @@ dependencies {
     kapt dependency_injection.core_compiler
     kapt dependency_injection.android_compiler
 
+    // layout
+    implementation ui.constraint_layout
+
     // testing
-    androidTestImplementation testing.espresso
+    testImplementation testing.espresso
+    testImplementation testing.espresso_intents
     testImplementation testing.junit
     testImplementation testing.mockito
+    testImplementation testing.robolectric
+    testImplementation testing.testx_core
+    testImplementation testing.testx_junit
+    testImplementation testing.testx_runner
+    testImplementation testing.testx_truth
+    androidTestImplementation testing.espresso
+    androidTestImplementation testing.espresso_intents
+    androidTestImplementation testing.testx_core
     androidTestImplementation testing.testx_junit
+    androidTestImplementation testing.testx_runner
+    androidTestImplementation testing.testx_truth
 }

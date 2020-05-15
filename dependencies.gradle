@@ -30,7 +30,9 @@ dependency_version.lifecycle = '2.2.0'
 dependency_version.material = '1.1.0'
 dependency_version.mockito = '3.3.3'
 dependency_version.recycler_view = '1.1.0'
+dependency_version.robolectric = '4.3'
 dependency_version.timber = '4.7.1'
+dependency_version.testx = '1.2.0'
 dependency_version.testx_junit = '1.1.1'
 
 def core = [:]
@@ -58,9 +60,14 @@ ext.log = log
 
 def testing = [:]
 testing.espresso = "androidx.test.espresso:espresso-core:$dependency_version.espresso"
+testing.espresso_intents = "androidx.test.espresso:espresso-intents:$dependency_version.espresso"
 testing.junit = "junit:junit:$dependency_version.junit"
 testing.mockito = "org.mockito:mockito-core:$dependency_version.mockito"
+testing.robolectric = "org.robolectric:robolectric:$dependency_version.robolectric"
+testing.testx_core = "androidx.test:core:$dependency_version.testx"
 testing.testx_junit = "androidx.test.ext:junit:$dependency_version.testx_junit"
+testing.testx_runner = "androidx.test:runner:$dependency_version.testx"
+testing.testx_truth = "androidx.test.ext:truth:$dependency_version.testx"
 ext.testing = testing
 
 def threading = [:]
