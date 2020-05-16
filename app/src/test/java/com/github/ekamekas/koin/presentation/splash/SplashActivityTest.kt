@@ -12,6 +12,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 
+/**
+ * Testing suite for [SplashActivity]
+ */
 @RunWith(AndroidJUnit4::class)
 @Config(maxSdk = Build.VERSION_CODES.P)
 class SplashActivityTest {

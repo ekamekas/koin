@@ -1,9 +1,11 @@
 package com.github.ekamekas.koin.presentation.splash
 
+import android.content.Intent
 import android.os.Handler
 import com.github.ekamekas.baha.common.ext.toastInfo
 import com.github.ekamekas.baha.core.presentation.activity.BaseActivity
 import com.github.ekamekas.koin.R
+import com.github.ekamekas.koin.presentation.dashboard.DashboardActivity
 
 /**
  * The main entry activity, this activity should launch from the app launcher
@@ -27,6 +29,14 @@ class SplashActivity: BaseActivity() {
 
     // callback
     private fun onSplashTimeOut() {
-        toastInfo("On Progress")
+        delegateDashboard()
+    }
+
+    // delegate
+    private fun delegateDashboard() {
+        val requestIntent = Intent(this, DashboardActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+        }
+        startActivity(requestIntent).also { finish() }
     }
 }

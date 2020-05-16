@@ -16,4 +16,6 @@
     <color name="colorSecondaryDark">#FF7003</color>
     <color name="colorSuccess">#32CCBC</color>
     <color name="colorSurface">#FCFCFC</color>
+
+    <color name="white">#FFFFFF</color>
 </resources>

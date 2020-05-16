@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/CoreTheme">
 
+        <activity
+            android:name=".presentation.dashboard.DashboardActivity"/>
         <activity android:name="com.github.ekamekas.koin.presentation.splash.SplashActivity">
             <!-- Main entry activity, should appear in app launcher  -->
             <intent-filter>
