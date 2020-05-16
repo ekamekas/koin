@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.github.ekamekas.koin.presentation.dashboard.DashboardViewModel"/>
+
+    </data>
+    
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <!-- content -->
+       <androidx.core.widget.NestedScrollView
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_marginBottom="16dp"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toTopOf="@id/navBottom"
+           android:background="@color/white">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:paddingTop="24dp"
+               android:paddingStart="24dp"
+               android:paddingEnd="24dp">
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/vHeader"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingBottom="16dp"
+                   app:layout_constraintTop_toTopOf="parent"
+                   android:fitsSystemWindows="true"
+                   android:background="@color/white">
+
+                   <TextView
+                       android:id="@+id/tvBalance"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       app:layout_constraintTop_toTopOf="parent"
+                       android:text="@{viewModel.balance.toString()}"
+                       android:textStyle="bold"
+                       style="@style/TextAppearance.MaterialComponents.Headline5"
+                       tools:text="Rp.2000.0000"/>
+
+                   <androidx.cardview.widget.CardView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="16dp"
+                       app:layout_constraintTop_toBottomOf="@id/tvBalance"
+                       app:contentPadding="16dp"
+                       app:cardBackgroundColor="@color/colorSecondary"
+                       app:cardCornerRadius="8dp"
+                       app:cardElevation="0dp">
+
+                       <androidx.constraintlayout.widget.ConstraintLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content">
+
+                           <TextView
+                               android:id="@+id/tvLabelIncome"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:gravity="center"
+                               app:layout_constraintTop_toTopOf="parent"
+                               app:layout_constraintStart_toStartOf="parent"
+                               app:layout_constraintEnd_toStartOf="@id/vSeparator"
+                               android:text="@string/label_income"
+                               android:textStyle="bold"
+                               style="@style/TextAppearance.MaterialComponents.Body1"/>
+
+                           <View
+                               android:id="@+id/vSeparator"
+                               android:layout_width="4dp"
+                               android:layout_height="0dp"
+                               app:layout_constraintTop_toTopOf="parent"
+                               app:layout_constraintBottom_toBottomOf="parent"
+                               app:layout_constraintStart_toEndOf="@id/tvLabelIncome"
+                               app:layout_constraintEnd_toStartOf="@id/tvLabelOutcome"
+                               android:background="@color/colorOnSecondary"/>
+
+                           <TextView
+                               android:id="@+id/tvLabelOutcome"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:gravity="center"
+                               app:layout_constraintTop_toTopOf="parent"
+                               app:layout_constraintStart_toEndOf="@id/vSeparator"
+                               app:layout_constraintEnd_toEndOf="parent"
+                               android:text="@string/label_outcome"
+                               android:textStyle="bold"
+                               style="@style/TextAppearance.MaterialComponents.Body1"/>
+
+                           <TextView
+                               android:id="@+id/tvIncome"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="4dp"
+                               android:gravity="center"
+                               app:layout_constraintTop_toBottomOf="@id/tvLabelIncome"
+                               app:layout_constraintBottom_toBottomOf="parent"
+                               app:layout_constraintStart_toStartOf="@id/tvLabelIncome"
+                               app:layout_constraintEnd_toEndOf="@id/tvLabelIncome"
+                               android:text="@{viewModel.income.toString()}"
+                               style="@style/TextAppearance.MaterialComponents.Body1"
+                               tools:text="Rp.3000.000"/>
+
+                           <TextView
+                               android:id="@+id/tvOutcome"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="4dp"
+                               android:gravity="center"
+                               app:layout_constraintTop_toBottomOf="@id/tvLabelOutcome"
+                               app:layout_constraintBottom_toBottomOf="parent"
+                               app:layout_constraintStart_toStartOf="@id/tvLabelOutcome"
+                               app:layout_constraintEnd_toEndOf="@id/tvLabelOutcome"
+                               android:text="@{viewModel.outcome.toString()}"
+                               style="@style/TextAppearance.MaterialComponents.Body1"
+                               tools:text="Rp.1000.000"/>
+
+                       </androidx.constraintlayout.widget.ConstraintLayout>
+
+                   </androidx.cardview.widget.CardView>
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+
+               <TextView
+                   android:id="@+id/tvLabelTransaction"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="16dp"
+                   app:layout_constraintTop_toBottomOf="@id/vHeader"
+                   android:text="@string/label_transaction"
+                   android:textStyle="bold"
+                   style="@style/TextAppearance.MaterialComponents.Subtitle1"/>
+
+               <include
+                   layout="@layout/content_hint_data_empty"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="16dp"
+                   app:layout_constraintTop_toBottomOf="@id/tvLabelTransaction"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:visibility="@{viewModel.transactionRecord.empty ? View.VISIBLE : View.GONE}"
+                   tools:visibility="visible"/>
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+       </androidx.core.widget.NestedScrollView>
+
+       <LinearLayout
+           android:id="@+id/navBottom"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="16dp"
+           android:gravity="center"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:background="@color/white">
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btnAddTransaction"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/label_add_transaction"
+               android:onClick="@{(view) -> viewModel.onAddTransactionEvent()}"
+               style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+
+       </LinearLayout>
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
