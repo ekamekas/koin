@@ -31,6 +31,7 @@ dependency_version.material = '1.1.0'
 dependency_version.mockito = '3.3.3'
 dependency_version.recycler_view = '1.1.0'
 dependency_version.robolectric = '4.3'
+dependency_version.room = '2.2.5'
 dependency_version.timber = '4.7.1'
 dependency_version.testx = '1.2.0'
 dependency_version.testx_junit = '1.1.1'
@@ -44,6 +45,10 @@ core.lifecycle_core = "androidx.lifecycle:lifecycle-runtime-ktx:$dependency_vers
 core.lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$dependency_version.lifecycle"
 core.lifecycle_test = "androidx.arch.core:core-testing:$dependency_version.arch"
 core.lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$dependency_version.lifecycle"
+core.room = "androidx.room:room-runtime:$dependency_version.room"
+core.room_compiler = "androidx.room:room-compiler:$dependency_version.room"
+core.room_ktx = "androidx.room:room-ktx:$dependency_version.room"
+core.room_test = "androidx.room:room-testing:$dependency_version.room"
 ext.core = core
 
 def dependency_injection = [:]
@@ -86,9 +91,7 @@ ext.utility = utility
 
 // generate version name by date
 static def generateVersionName() {
-    def date = new Date()
-    def formattedDate = date.format('yyyy.MM.dd')
-    return formattedDate
+    return "0.0.1"
 }
 
 // generate version code by epoch second

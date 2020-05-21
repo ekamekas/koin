@@ -27,6 +27,20 @@ annotation class RemoteDataSource
 annotation class CacheDataSource
 
 /**
+ * Qualifier to indicate instance is main dispatcher
+ */
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class DispatcherMain
+
+/**
+ * Qualifier to indicate instance is IO dispatcher
+ */
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class DispatcherIO
+
+/**
  * Class to annotate class as key for dependency injection
  */
 @Target(

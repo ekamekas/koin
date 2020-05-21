@@ -13,7 +13,7 @@ sealed class State<out R> {
         private set  // allow external read only
 
     data class Success<out T>(val data: T): State<T>()
-    data class Error(@StringRes val message: Int, val exception: Exception = RuntimeException()): State<Nothing>()
+    data class Error(@StringRes val message: Int? = null, val exception: Exception = RuntimeException()): State<Nothing>()
     data class Progress(val progress: Float = 0.0F): State<Nothing>()
 
     /**

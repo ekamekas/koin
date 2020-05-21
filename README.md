@@ -1,6 +1,6 @@
 # Koin
 
-Kemudahan untuk mengatur keuangan finansial dari dalam saku Anda.
+The ease of managing financial finances from your pocket.
 
 ## Getting Started
 
@@ -22,17 +22,9 @@ You can run the test with gradle task
 ./gradlew test
 ```
 
-### And coding style tests
-
-**Need explanation**
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/ekamekas/koin/tags). 
 
 ## Authors
 
