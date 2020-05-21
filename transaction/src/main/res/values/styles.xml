@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- button -->
+    <style name="TextButton" parent="Widget.MaterialComponents.Button" />
+    <style name="TextButton.Inverse">
+        <item name="colorAccent">@color/colorSecondary</item>
+    </style>
+
+</resources>

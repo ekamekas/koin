@@ -1,8 +1,5 @@
 <resources >
     <string name="label_app_flavor">Beta</string>
     <string name="label_add_transaction">Add</string>
-    <string name="label_transaction">Transaction</string>
-    <string name="label_outcome">Outcome</string>
-    <string name="label_income">Income</string>
     <string name="hint_back_press_to_exit">Press once again to exit</string>
 </resources>

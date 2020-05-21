@@ -12,8 +12,8 @@
     <color name="colorOnSurface">#333333</color>
     <color name="colorPrimary">#ABDCFF</color>
     <color name="colorPrimaryDark">#0390FF</color>
-    <color name="colorSecondary">#FFCEAB</color>
-    <color name="colorSecondaryDark">#FF7003</color>
+    <color name="colorSecondary">#FD9B51</color>
+    <color name="colorSecondaryDark">#FB8022</color>
     <color name="colorSuccess">#32CCBC</color>
     <color name="colorSurface">#FCFCFC</color>
 

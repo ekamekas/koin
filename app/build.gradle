@@ -59,6 +59,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // module implementation
     implementation project(':core')
+    implementation project(':transaction')
 
     // core
     kapt core.lifecycle_compiler
