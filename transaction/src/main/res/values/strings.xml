@@ -2,6 +2,7 @@
 <resources>
     <string name="transaction_record">transaction_record</string>
     <string name="label_add_transaction">Add</string>
+    <string name="label_delete_transaction">Delete</string>
     <string name="label_widget_keyboard_key_1">1</string>
     <string name="label_widget_keyboard_key_2">2</string>
     <string name="label_widget_keyboard_key_3">3</string>

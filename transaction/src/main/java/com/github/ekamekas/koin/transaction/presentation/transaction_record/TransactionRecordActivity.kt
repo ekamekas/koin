@@ -2,9 +2,10 @@ package com.github.ekamekas.koin.transaction.presentation.transaction_record
 
 import android.app.Activity
 import androidx.viewpager2.widget.ViewPager2
+import com.github.ekamekas.baha.common.ext.buildDialogActionPrompt
 import com.github.ekamekas.baha.common.ext.buildDialogProgress
 import com.github.ekamekas.baha.common.ext.exhaustive
-import com.github.ekamekas.baha.common.ext.toastSuccess
+import com.github.ekamekas.baha.common.ext.toastError
 import com.github.ekamekas.baha.core.presentation.activity.BaseActivityDataBinding
 import com.github.ekamekas.baha.core.presentation.view_object.State
 import com.github.ekamekas.baha.core.presentation.view_object.StateObserver
@@ -21,6 +22,15 @@ import kotlinx.android.synthetic.main.activity_transaction_record.*
 class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewModel, ActivityTransactionRecordBinding>() {
 
     // dialog
+    private val actionPromptDialog by lazy {
+        buildDialogActionPrompt(
+            title = getString(R.string.hint_delete_operation_prompt),
+            onPositiveButtonClick = {
+                viewModel.onTransactionRecordDelete()
+            },
+            onNegativeButtonClick = {/*nop*/}
+        )
+    }
     private val progressDialog by lazy {
         buildDialogProgress()
     }
@@ -38,13 +48,32 @@ class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewMo
         viewModel.onTransactionRecordAddEvent.observe(this, StateObserver { state ->
             when(state) {
                 is State.Success -> {
+                    progressDialog.dismiss()
                     setResult(Activity.RESULT_OK)
                     finish()
                 }
                 is State.Error -> {
                     progressDialog.dismiss()
-                    toastSuccess(
+                    toastError(
                         getString(com.github.ekamekas.baha.common.R.string.hint_create_operation_failed_format,
+                            getString(R.string.transaction_record)
+                        )
+                    )
+                }
+                is State.Progress -> progressDialog.show()
+            }.exhaustive
+        })
+        viewModel.onTransactionRecordDeleteEvent.observe(this, StateObserver { state ->
+            when(state) {
+                is State.Success -> {
+                    progressDialog.dismiss()
+                    setResult(Activity.RESULT_OK)
+                    finish()
+                }
+                is State.Error -> {
+                    progressDialog.dismiss()
+                    toastError(
+                        getString(com.github.ekamekas.baha.common.R.string.hint_delete_operation_failed_format,
                             getString(R.string.transaction_record)
                         )
                     )
@@ -72,6 +101,11 @@ class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewMo
 
                         true
                     }
+                    R.id.action_delete -> {
+                        onActionDelete()
+
+                        true
+                    }
                     else -> false
                 }
 
@@ -87,6 +121,8 @@ class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewMo
         intent.getParcelableExtra<TransactionRecordVO>(ExtraCode.TRANSACTION_RECORD)?.also {
             vNavigation.menu.findItem(R.id.action_add).title = getString(R.string.label_update_transaction)
             viewModel.setTransactionRecord(it.toDomain())
+        }.also {
+            vNavigation.menu.findItem(R.id.action_delete).isVisible = it != null
         }
     }
 
@@ -97,6 +133,13 @@ class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewMo
         } else {
             // otherwise, scroll to previous page
             vContent.currentItem = vContent.currentItem - 1
+        }
+    }
+
+    // callback
+    private fun onActionDelete() {
+        if(!actionPromptDialog.isShowing) {
+            actionPromptDialog.show()
         }
     }
 }

@@ -4,7 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Handler
 import androidx.lifecycle.Observer
-import com.github.ekamekas.baha.common.ext.*
+import com.github.ekamekas.baha.common.ext.initVerticalRecyclerView
+import com.github.ekamekas.baha.common.ext.toastError
+import com.github.ekamekas.baha.common.ext.toastInfo
+import com.github.ekamekas.baha.common.ext.visibleIf
 import com.github.ekamekas.baha.core.presentation.activity.BaseActivityDataBinding
 import com.github.ekamekas.baha.core.presentation.view_object.State
 import com.github.ekamekas.baha.core.presentation.view_object.StateObserver
@@ -62,8 +65,7 @@ class DashboardActivity: BaseActivityDataBinding<DashboardViewModel, ActivityDas
     override fun setupViews() {
         vTransactionRecordContent.initVerticalRecyclerView(
             context = this,
-            adapter = transactionRecordAdapter,
-            offset = dimens(R.dimen.margin_inter_item)
+            adapter = transactionRecordAdapter
         )
     }
 

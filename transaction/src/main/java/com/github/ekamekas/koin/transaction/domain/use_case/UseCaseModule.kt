@@ -1,5 +1,6 @@
 package com.github.ekamekas.koin.transaction.domain.use_case
 
+import com.github.ekamekas.koin.transaction.domain.use_case.transaction_record.DeleteTransactionRecordUseCase
 import com.github.ekamekas.koin.transaction.domain.use_case.transaction_record.GetTransactionRecordUseCase
 import com.github.ekamekas.koin.transaction.domain.use_case.transaction_record.PutSingleTransactionRecordUseCase
 import dagger.Binds
@@ -10,6 +11,9 @@ import javax.inject.Singleton
 abstract class UseCaseModule {
 
     // transaction record
+    @Binds
+    @Singleton
+    abstract fun bindDeleteTransactionRecordUseCase(useCase: DeleteTransactionRecordUseCase): ITransactionUseCase.TransactionRecord.DeleteTransactionRecordUseCase
     @Binds
     @Singleton
     abstract fun bindGetTransactionRecordUseCase(useCase: GetTransactionRecordUseCase): ITransactionUseCase.TransactionRecord.GetTransactionRecordUseCase
