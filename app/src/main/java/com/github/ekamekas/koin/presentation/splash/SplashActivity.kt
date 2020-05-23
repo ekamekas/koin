@@ -23,7 +23,7 @@ class SplashActivity: BaseActivity() {
     private fun startSplashTimer() {
         Handler().postDelayed({
             onSplashTimeOut()
-        }, 1500L)  // time will running for 1.5 s
+        }, 500L)  // time will running for .5 s
     }
 
     // callback

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_inter_form">16dp</dimen>
+    <dimen name="margin_inter_item">24dp</dimen>
     <dimen name="padding_card_view_content">12dp</dimen>
     <dimen name="padding_screen">24dp</dimen>
 </resources>

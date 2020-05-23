@@ -3,12 +3,14 @@ package com.github.ekamekas.baha.common.ext
 import android.app.Dialog
 import android.content.Context
 import android.widget.Toast
+import androidx.annotation.DimenRes
 import com.github.ekamekas.baha.common.view.dialog.ProgressDialog
 
 /**
  * Get DIP value from represented by integer value
  */
 fun Context.dip(value: Int) = (value * resources.displayMetrics.density).toInt()
+fun Context.dimens(@DimenRes id: Int) = resources.getDimension(id).toInt()
 
 // dialog extension suite
 fun Context.buildDialogProgress(): Dialog {

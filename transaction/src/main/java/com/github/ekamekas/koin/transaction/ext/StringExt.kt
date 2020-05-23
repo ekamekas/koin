@@ -3,6 +3,15 @@ package com.github.ekamekas.koin.transaction.ext
 import java.util.*
 import kotlin.math.pow
 
+@Throws(NumberFormatException::class)
+fun String.toCurrency(): String {
+    return this
+        .split(' ').filter { it != "" }
+        .joinToString(" ") {
+            it.toDoubleOrNull()?.toCurrency(appendWithCode = false) ?: it
+        }
+}
+
 /**
  * Parse and calculate mathematical operation from string
  */
