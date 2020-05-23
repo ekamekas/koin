@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.ekamekas.baha.core.presentation.view_model.BaseViewModel
 import com.github.ekamekas.baha.core.presentation.view_object.State
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionRecord
+import com.github.ekamekas.koin.transaction.domain.entity.TransactionType
 import com.github.ekamekas.koin.transaction.domain.use_case.ITransactionUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -77,15 +78,19 @@ class DashboardViewModel @Inject constructor(
     }
 
     private fun getBalance(transactionRecord: List<TransactionRecord>) {
-        _balance.value = if(transactionRecord.isEmpty()) 0.0 else transactionRecord.map { it.value }.reduce { acc, value -> acc + value }
+        _balance.value = if(transactionRecord.isEmpty()) 0.0 else transactionRecord.map { if(it.transactionType == TransactionType.INCOME) it.value else it.value.times(-1) }.reduce { acc, value -> acc + value }
     }
 
     private fun getIncome(transactionRecord: List<TransactionRecord>) {
-        _income.value = if(transactionRecord.isEmpty()) 0.0 else transactionRecord.map { it.value }.reduce { acc, value -> acc + value }
+        _income.value = transactionRecord.filter { it.transactionType == TransactionType.INCOME }.let { _transactionRecord ->
+            if(_transactionRecord.isEmpty()) 0.0 else _transactionRecord.map { it.value }.reduce { acc, value -> acc + value }
+        }
     }
 
     private fun getOutcome(transactionRecord: List<TransactionRecord>) {
-        _expense.value = if(transactionRecord.isEmpty()) 0.0 else transactionRecord.map { it.value }.reduce { acc, value -> acc + value }
+        _expense.value = transactionRecord.filter { it.transactionType == TransactionType.EXPENSE }.let { _transactionRecord ->
+            if(_transactionRecord.isEmpty()) 0.0 else _transactionRecord.map { it.value }.reduce { acc, value -> acc + value }
+        }
     }
 
 }

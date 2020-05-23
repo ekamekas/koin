@@ -23,12 +23,13 @@
            android:id="@+id/tvBalance"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_marginTop="@dimen/padding_screen"
-           android:layout_marginStart="@dimen/padding_screen"
-           android:layout_marginEnd="@dimen/padding_screen"
+           android:paddingTop="@dimen/padding_screen"
+           android:paddingStart="@dimen/padding_screen"
+           android:paddingEnd="@dimen/padding_screen"
            app:layout_constraintTop_toTopOf="parent"
-           toCurrency="@{viewModel.balance}"
+           android:background="@color/white"
            android:textStyle="bold"
+           toCurrency="@{viewModel.balance}"
            style="@style/TextAppearance.MaterialComponents.Headline5"
            tools:text="Rp.2000.0000"/>
 

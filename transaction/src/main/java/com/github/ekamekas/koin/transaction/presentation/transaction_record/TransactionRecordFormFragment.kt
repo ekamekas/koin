@@ -1,5 +1,7 @@
 package com.github.ekamekas.koin.transaction.presentation.transaction_record
 
+import android.view.View
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
 import com.github.ekamekas.baha.core.presentation.fragment.BaseFragmentDataBinding
 import com.github.ekamekas.baha.core.presentation.view_object.State
@@ -7,6 +9,7 @@ import com.github.ekamekas.baha.core.presentation.view_object.StateObserver
 import com.github.ekamekas.koin.transaction.R
 import com.github.ekamekas.koin.transaction.databinding.FragmentTransactionRecordFormBinding
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionType
+import com.github.ekamekas.koin.transaction.ext.toCurrency
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_transaction_record_form.*
 
@@ -40,8 +43,11 @@ class TransactionRecordFormFragment: BaseFragmentDataBinding<TransactionRecordVi
     }
 
     override fun setupViews() {
+        tvValue.doAfterTextChanged {
+            vValueContent.fullScroll(View.FOCUS_RIGHT)  // focus on latest input
+        }
         vKeyboard.setOnClickListener { text, operationResult ->
-            tvValue.setText(text)
+            tvValue.text = text.toCurrency()
             viewModel.setTransactionValue(operationResult)
         }
         vOptionContainer.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {

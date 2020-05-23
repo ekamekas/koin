@@ -24,7 +24,7 @@
     <string name="label_transaction">Transaction</string>
     <string name="label_expense">Expense</string>
     <string name="label_income">Income</string>
-    <string name="value_default">0.0</string>
+    <string name="value_default">0</string>
     <string name="label_description">Description</string>
     <string name="label_update_transaction">Update</string>
 </resources>

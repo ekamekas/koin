@@ -24,8 +24,6 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:contentPaddingTop="@dimen/padding_card_view_content"
-        app:contentPaddingBottom="@dimen/padding_card_view_content"
         app:cardElevation="0dp"
         android:onClick="@{onClick}">
 
@@ -36,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/ivTransactionType"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 app:layout_constraintTop_toTopOf="@id/tvDate"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
