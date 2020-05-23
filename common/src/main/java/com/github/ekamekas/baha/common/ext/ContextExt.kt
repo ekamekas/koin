@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.widget.Toast
 import androidx.annotation.DimenRes
+import com.github.ekamekas.baha.common.view.dialog.ActionPromptDialog
 import com.github.ekamekas.baha.common.view.dialog.ProgressDialog
 
 /**
@@ -13,6 +14,41 @@ fun Context.dip(value: Int) = (value * resources.displayMetrics.density).toInt()
 fun Context.dimens(@DimenRes id: Int) = resources.getDimension(id).toInt()
 
 // dialog extension suite
+fun Context.buildDialogActionPrompt(
+    title: String,
+    subtitle: String? = null,
+    positiveButton: String? = null,
+    negativeButton: String? = null,
+    onPositiveButtonClick: () -> Unit,
+    onNegativeButtonClick: (() -> Unit)? = null
+): Dialog {
+    return ActionPromptDialog(
+        context = this,
+        title = title,
+        subtitle = subtitle,
+        positiveButton = positiveButton,
+        negativeButton = negativeButton,
+        onPositiveButtonClick = onPositiveButtonClick,
+        onNegativeButtonClick = onNegativeButtonClick
+    )
+}
+fun Context.dialogActionPrompt(
+    title: String,
+    subtitle: String? = null,
+    positiveButton: String? = null,
+    negativeButton: String? = null,
+    onPositiveButtonClick: () -> Unit,
+    onNegativeButtonClick: (() -> Unit)? = null
+) {
+    buildDialogActionPrompt(
+        title = title,
+        subtitle = subtitle,
+        positiveButton = positiveButton,
+        negativeButton = negativeButton,
+        onPositiveButtonClick = onPositiveButtonClick,
+        onNegativeButtonClick = onNegativeButtonClick
+    ).show()
+}
 fun Context.buildDialogProgress(): Dialog {
     return ProgressDialog(this)
 }

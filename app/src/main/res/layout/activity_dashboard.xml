@@ -167,7 +167,6 @@
                    android:id="@+id/vTransactionRecordContent"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:layout_marginTop="16dp"
                    app:layout_constraintTop_toBottomOf="@id/pbProgress"
                    android:visibility="@{viewModel.onGetTransactionRecordEvent.getContentIfNotHandled() instanceof State.Progress ? View.GONE : viewModel.transactionRecord.isEmpty() ? View.GONE : View.VISIBLE}"
                    tools:listitem="@layout/item_transaction_record"

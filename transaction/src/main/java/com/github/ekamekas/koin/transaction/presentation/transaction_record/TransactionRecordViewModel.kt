@@ -17,6 +17,7 @@ import javax.inject.Inject
  * View model of transaction
  */
 class TransactionRecordViewModel @Inject constructor(
+    private val deleteTransactionRecordUseCase: ITransactionUseCase.TransactionRecord.DeleteTransactionRecordUseCase,
     private val putSingleTransactionRecordUseCase: ITransactionUseCase.TransactionRecord.PutSingleTransactionRecordUseCase
 ): BaseViewModel() {
 
@@ -26,6 +27,8 @@ class TransactionRecordViewModel @Inject constructor(
     // event
     private val _onTransactionRecordAddEvent = MutableLiveData<State<Unit>>()
     val onTransactionRecordAddEvent: LiveData<State<Unit>> = _onTransactionRecordAddEvent
+    private val _onTransactionRecordDeleteEvent = MutableLiveData<State<Unit>>()
+    val onTransactionRecordDeleteEvent: LiveData<State<Unit>> = _onTransactionRecordDeleteEvent
     private val _onTransactionRecordSetEvent = MutableLiveData<State<TransactionRecord>>()
     val onTransactionRecordSetEvent: LiveData<State<TransactionRecord>> = _onTransactionRecordSetEvent
     private val _onNextPageClickEvent = MutableLiveData<State<Unit>>()
@@ -95,6 +98,7 @@ class TransactionRecordViewModel @Inject constructor(
      * Event on add transaction record
      */
     fun onTransactionRecordAdd() {
+        _onTransactionRecordAddEvent.value = State.Progress()
         viewModelScope.launch {
             val transactionRecord = transactionRecordState.value?.apply {
                 description = descriptionBind.value
@@ -108,7 +112,6 @@ class TransactionRecordViewModel @Inject constructor(
                 value = _valueBind.value ?: 0.0
             )
 
-            _onTransactionRecordAddEvent.value = State.Progress()
             // invoke use case
             putSingleTransactionRecordUseCase
                 .invoke(
@@ -124,6 +127,32 @@ class TransactionRecordViewModel @Inject constructor(
                         _onTransactionRecordAddEvent.value = State.Success(Unit)
                     }
                 )
+        }
+    }
+
+    /**
+     * Event on delete transaction record
+     */
+    fun onTransactionRecordDelete() {
+        _onTransactionRecordDeleteEvent.value = State.Progress()
+        viewModelScope.launch {
+            transactionRecordState.value.also { _transactionRecord ->
+                // validate transaction record is set
+                if(_transactionRecord != null) {
+                    deleteTransactionRecordUseCase
+                        .invoke(params = ITransactionUseCase.TransactionRecord.DeleteTransactionRecordUseCase.Param(_transactionRecord.id))
+                        .foldSuspend(
+                            fnL = {
+                                _onTransactionRecordDeleteEvent.value = State.Error(exception = it)
+                            },
+                            fnR = {
+                                _onTransactionRecordDeleteEvent.value = State.Success(Unit)
+                            }
+                        )
+                } else {
+                    _onTransactionRecordDeleteEvent.value = State.Error(exception = IllegalStateException("transaction record is not set"))
+                }
+            }
         }
     }
 

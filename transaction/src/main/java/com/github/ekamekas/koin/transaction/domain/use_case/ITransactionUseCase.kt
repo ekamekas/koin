@@ -8,6 +8,9 @@ abstract class ITransactionUseCase {
      * Contract defined for transaction record use case
      */
     abstract class TransactionRecord {
+        abstract class DeleteTransactionRecordUseCase: BaseUseCase<Nothing?, DeleteTransactionRecordUseCase.Param>() {
+            data class Param(val id: String)
+        }
         abstract class GetTransactionRecordUseCase: BaseUseCase<List<com.github.ekamekas.koin.transaction.domain.entity.TransactionRecord>, Nothing?>()
         abstract class PutSingleTransactionRecordUseCase: BaseUseCase<Nothing?, PutSingleTransactionRecordUseCase.Param>() {
             data class Param(val transactionRecord: com.github.ekamekas.koin.transaction.domain.entity.TransactionRecord)
