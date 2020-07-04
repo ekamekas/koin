@@ -14,11 +14,13 @@ interface TransactionRecordDAO {
     @Query("DELETE FROM ${TransactionRecordDB.TABLE_NAME} WHERE ${TransactionRecordDB.ID} = :id")
     suspend fun delete(id: String): Int
 
+    @Transaction
     @Query("SELECT * FROM ${TransactionRecordDB.TABLE_NAME}")
-    suspend fun fetch(): List<TransactionRecordDB>
+    suspend fun fetch(): List<TransactionRecordAndCategoryDB>
 
+    @Transaction
     @Query("SELECT * FROM ${TransactionRecordDB.TABLE_NAME} WHERE ${TransactionRecordDB.ID} = :id")
-    suspend fun fetch(id: String): TransactionRecordDB
+    suspend fun fetch(id: String): TransactionRecordAndCategoryDB
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(data: TransactionRecordDB): Long

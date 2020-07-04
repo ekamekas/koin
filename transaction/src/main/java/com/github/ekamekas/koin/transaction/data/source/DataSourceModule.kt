@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.github.ekamekas.baha.core.di.CacheDataSource
 import com.github.ekamekas.baha.core.di.LocalDataSource
+import com.github.ekamekas.baha.core.di.RemoteDataSource
 import com.github.ekamekas.koin.transaction.BuildConfig
+import com.github.ekamekas.koin.transaction.data.source.transaction_category.*
 import com.github.ekamekas.koin.transaction.data.source.transaction_record.TransactionRecordCacheDataSource
 import com.github.ekamekas.koin.transaction.data.source.transaction_record.TransactionRecordLocalDataSource
 import dagger.Binds
@@ -18,6 +20,23 @@ import javax.inject.Singleton
     ]
 )
 abstract class DataSourceModule {
+
+    // transaction category
+    @Singleton
+    @Binds
+    @CacheDataSource
+    abstract fun bindTransactionCategoryCacheDataSource(dataSource: TransactionCategoryCacheDataSource): ITransactionDataSource.TransactionCategory
+    @Singleton
+    @Binds
+    @LocalDataSource
+    abstract fun bindTransactionCategoryLocalDataSource(dataSource: TransactionCategoryLocalDataSource): ITransactionDataSource.TransactionCategory
+    @Singleton
+    @Binds
+    @RemoteDataSource
+    abstract fun bindTransactionCategoryRemoteDataSource(dataSource: TransactionCategoryRemoteDataSource): ITransactionDataSource.TransactionCategory
+    @Singleton
+    @Binds
+    abstract fun bindTransactionCategoryService(service: TransactionCategoryServiceImpl): TransactionCategoryService
 
     // transaction record
     @Singleton
@@ -47,6 +66,9 @@ object LocalDataSourceModule {
                 BuildConfig.LIBRARY_PACKAGE_NAME
             )
             .fallbackToDestructiveMigration()
+            .addMigrations(
+                MIGRATION_1_2
+            )
             .build()
     }
 

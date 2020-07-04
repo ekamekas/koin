@@ -1,6 +1,7 @@
 package com.github.ekamekas.koin.transaction.presentation.view_object
 
 import android.os.Parcelable
+import com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionRecord
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionType
 import kotlinx.android.parcel.Parcelize
@@ -13,7 +14,10 @@ import java.util.*
  * @param description description of transaction
  * @param transactionDate data of transaction in millis
  * @param transactionType type of transaction either [TransactionType.EXPENSE] or [TransactionType.INCOME]
+ * @param transactionCategory category of transaction
  * @param value value of transaction
+ *
+ * @see TransactionCategoryVO
  */
 @Parcelize
 data class TransactionRecordVO(
@@ -21,6 +25,7 @@ data class TransactionRecordVO(
     var description: String? = null,
     var transactionDate: Long,
     var transactionType: String,
+    var transactionCategory: TransactionCategoryVO? = null,
     var value: Double
 ): Parcelable
 
@@ -33,6 +38,7 @@ fun TransactionRecordVO.toDomain(): TransactionRecord {
         description = description,
         transactionDate = transactionDate,
         transactionType = transactionType,
+        transactionCategory = transactionCategory?.toDomain(),
         value = value
     )
 }
@@ -46,6 +52,7 @@ fun TransactionRecord.toVO(): TransactionRecordVO {
         description = description,
         transactionDate = transactionDate,
         transactionType = transactionType,
+        transactionCategory = transactionCategory?.toVO(),
         value = value
     )
 }

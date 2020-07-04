@@ -8,6 +8,10 @@
 
         <activity
             android:name=".presentation.transaction_record.TransactionRecordActivity"/>
+        <activity
+            android:name=".presentation.transaction_category.TransactionCategoryActivity"/>
+        <activity
+            android:name=".presentation.transaction_category.create.TransactionCategoryCreateActivity"/>
 
     </application>
 

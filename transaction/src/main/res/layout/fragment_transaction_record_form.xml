@@ -129,6 +129,37 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/vCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/vKeyboard"
+            app:contentPadding="8dp"
+            app:cardBackgroundColor="@color/colorPrimaryDark">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_transaction_category"
+                    android:textColor="@color/colorOnPrimaryDark"
+                    style="@style/TextAppearance.AppCompat.Body1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorOnPrimaryDark"
+                    android:text="@{viewModel.transactionCategory.name}"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    tools:text="Others"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
         <com.github.ekamekas.koin.transaction.presentation.widget.NumericKeyboard
             android:id="@+id/vKeyboard"
             android:layout_width="match_parent"

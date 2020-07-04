@@ -5,6 +5,20 @@ import com.github.ekamekas.baha.core.domain.entity.Result
 interface ITransactionDataSource {
 
     /**
+     * Contract defined for transaction category data source
+     */
+    interface TransactionCategory {
+        suspend fun deleteTransactionCategory(): Result<Nothing?>
+        suspend fun deleteTransactionCategory(id: String): Result<Nothing?>
+        suspend fun deleteTransactionCategoryByCategory(id: String): Result<Nothing?>
+        suspend fun fetchTransactionCategory(): Result<List<com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory>>
+        suspend fun fetchTransactionCategory(id: String): Result<com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory>
+        suspend fun fetchTransactionCategoryByCategory(id: String): Result<List<com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory>>
+        suspend fun upsertTransactionCategory(param: com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory): Result<Nothing?>
+        suspend fun upsertTransactionCategory(param: List<com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory>): Result<Nothing?>
+    }
+
+    /**
      * Contract defined for transaction record data source
      */
     interface TransactionRecord {

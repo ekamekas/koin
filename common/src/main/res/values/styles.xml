@@ -15,4 +15,7 @@
         <item name="colorSurface">@color/colorSurface</item>
     </style>
 
+    <style name="Card" parent="Widget.MaterialComponents.CardView" />
+
+
 </resources>

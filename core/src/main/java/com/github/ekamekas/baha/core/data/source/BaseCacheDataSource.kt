@@ -38,6 +38,14 @@ abstract class BaseCacheDataSource<T> {
     }
 
     @Throws(Exception::class)
+    protected open fun deleteCache(key: List<String>): Result<Nothing?> {
+        cachedData?.also { data -> key.forEach { data.remove(it) } }
+            ?: throw IllegalStateException("Data is not found")
+
+        return Result.Success(null)
+    }
+
+    @Throws(Exception::class)
     protected open fun fetchCache(): Result<List<T>> {
         val result = cachedData?.map { it.value }
             ?: throw IllegalStateException("Data not found")

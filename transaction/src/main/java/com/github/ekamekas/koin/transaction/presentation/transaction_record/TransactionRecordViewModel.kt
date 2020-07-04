@@ -7,6 +7,7 @@ import com.github.ekamekas.baha.common.ext.toDate
 import com.github.ekamekas.baha.common.ext.toTime
 import com.github.ekamekas.baha.core.presentation.view_model.BaseViewModel
 import com.github.ekamekas.baha.core.presentation.view_object.State
+import com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionRecord
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionType
 import com.github.ekamekas.koin.transaction.domain.use_case.ITransactionUseCase
@@ -36,15 +37,17 @@ class TransactionRecordViewModel @Inject constructor(
 
     // view bind
     val descriptionBind = MutableLiveData<String>()
-    private val _transactionDateMillisBind = MutableLiveData<Long>().apply { value = System.currentTimeMillis() }
+    private val _transactionDateMillisBind = MutableLiveData(System.currentTimeMillis())
     val transactionDateMillisBind: LiveData<Long> = _transactionDateMillisBind
     private val _transactionDateBind = MutableLiveData<String>()
     val transactionDateBind: LiveData<String> = _transactionDateBind
     private val _transactionTimeBind = MutableLiveData<String>()
     val transactionTimeBind: LiveData<String> = _transactionTimeBind
-    private val _transactionTypeBind = MutableLiveData<String>().apply { value = TransactionType.INCOME }
+    private val _transactionTypeBind = MutableLiveData(TransactionType.INCOME)
     val transactionTypeBind: LiveData<String> = _transactionTypeBind
     private val _valueBind = MutableLiveData<Double>()
+    private val _transactionCategoryBind = MutableLiveData<TransactionCategory>()
+    val transactionCategory: LiveData<TransactionCategory> = _transactionCategoryBind
 
     init {
         _onTransactionRecordSetEvent.observeForever { state ->
@@ -56,6 +59,7 @@ class TransactionRecordViewModel @Inject constructor(
             transactionRecord.description?.also { descriptionBind.value = it }
             transactionRecord.transactionDate.also { _transactionDateMillisBind.value = it }
             transactionRecord.transactionType.also { _transactionTypeBind.value = it }
+            transactionRecord.transactionCategory.also { _transactionCategoryBind.value = it }
             transactionRecord.value.also { _valueBind.value = it }
         }
         _transactionDateMillisBind.observeForever { millis ->
@@ -95,6 +99,13 @@ class TransactionRecordViewModel @Inject constructor(
     }
 
     /**
+     * Transaction category setter
+     */
+    fun setTransactionCategory(value: TransactionCategory?) {
+        _transactionCategoryBind.value = value
+    }
+
+    /**
      * Event on add transaction record
      */
     fun onTransactionRecordAdd() {
@@ -104,11 +115,13 @@ class TransactionRecordViewModel @Inject constructor(
                 description = descriptionBind.value
                 transactionDate = _transactionDateMillisBind.value ?: System.currentTimeMillis()
                 transactionType = _transactionTypeBind.value ?: TransactionType.INCOME
+                transactionCategory = _transactionCategoryBind.value
                 value = _valueBind.value ?: 0.0
             } ?: TransactionRecord(
                 description = descriptionBind.value,
                 transactionDate = _transactionDateMillisBind.value ?: System.currentTimeMillis(),
                 transactionType = _transactionTypeBind.value ?: TransactionType.INCOME,
+                transactionCategory = _transactionCategoryBind.value,
                 value = _valueBind.value ?: 0.0
             )
 
