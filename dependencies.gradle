@@ -25,6 +25,7 @@ dependency_version.coroutine = "1.3.6"
 dependency_version.dagger = "2.27"
 dependency_version.espresso = '3.2.0'
 dependency_version.junit = '4.12'
+dependency_version.kotlin_serialization = '0.20.0'
 dependency_version.ktx = '1.2.0'
 dependency_version.lifecycle = '2.2.0'
 dependency_version.material = '1.1.0'
@@ -49,6 +50,7 @@ core.room = "androidx.room:room-runtime:$dependency_version.room"
 core.room_compiler = "androidx.room:room-compiler:$dependency_version.room"
 core.room_ktx = "androidx.room:room-ktx:$dependency_version.room"
 core.room_test = "androidx.room:room-testing:$dependency_version.room"
+core.serialize = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$dependency_version.kotlin_serialization"
 ext.core = core
 
 def dependency_injection = [:]

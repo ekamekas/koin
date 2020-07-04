@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.github.ekamekas.koin.transaction.presentation.transaction_category.TransactionCategoryViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/CoreTheme">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/vNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/label_transaction_category"
+            app:navigationIcon="@drawable/ic_close_color_on_primary"
+            app:menu="@menu/menu_transaction_category"/>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/vContentLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/vNavigation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/vContentLoading"
+            tools:listitem="@layout/item_transaction_category"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

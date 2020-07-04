@@ -5,6 +5,7 @@ import com.github.ekamekas.koin.transaction.CoroutineTestRule
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionRecord
 import com.github.ekamekas.koin.transaction.domain.entity.TransactionType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Rule
@@ -19,7 +20,7 @@ class TransactionRecordCacheDataSourceTest {
     @get: Rule
     val coroutineRule = CoroutineTestRule()
 
-    private val expirationOffsetMillis = 2000L  // 0ms
+    private val expirationOffsetMillis = 2000L  // 2s
 
     @Test
     fun deleteTransactionRecord_when_cacheNotHit_then_returnError() {
@@ -139,6 +140,7 @@ class TransactionRecordCacheDataSourceTest {
                 value = 0.0
             )
             dataSource.upsertTransactionRecord(data)
+            delay(1000)  // s
             // act
             val result = dataSource.fetchTransactionRecord()
             // assert

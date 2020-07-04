@@ -5,6 +5,19 @@ import com.github.ekamekas.baha.core.domain.use_case.BaseUseCase
 abstract class ITransactionUseCase {
 
     /**
+     * Contract defined for transaction category use case
+     */
+    abstract class TransactionCategory {
+        abstract class DeleteTransactionCategoryUseCase: BaseUseCase<Nothing?, DeleteTransactionCategoryUseCase.Param>() {
+            data class Param(val id: String)
+        }
+        abstract class GetTransactionCategoryUseCase: BaseUseCase<List<com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory>, Nothing?>()
+        abstract class PutSingleTransactionCategoryUseCase: BaseUseCase<Nothing?, PutSingleTransactionCategoryUseCase.Param>() {
+            data class Param(val transactionCategory: com.github.ekamekas.koin.transaction.domain.entity.TransactionCategory)
+        }
+    }
+
+    /**
      * Contract defined for transaction record use case
      */
     abstract class TransactionRecord {

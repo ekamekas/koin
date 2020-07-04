@@ -1,5 +1,10 @@
 package com.github.ekamekas.koin.transaction.ext
 
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.util.Base64
 import java.util.*
 import kotlin.math.pow
 
@@ -10,6 +15,32 @@ fun String.toCurrency(): String {
         .joinToString(" ") {
             it.toDoubleOrNull()?.toCurrency(appendWithCode = false) ?: it
         }
+}
+
+/**
+ * Convert base64 encoded image to drawable
+ *
+ * @param context context of resource
+ *
+ * @return Drawable
+ */
+fun String.toDrawable(context: Context): Drawable? {
+    return try {
+        fromBase64()?.let { decoded ->
+            BitmapDrawable(context.resources,
+                BitmapFactory.decodeByteArray(decoded, 0, decoded.size)
+            )
+        }
+    } catch (e: Exception) {
+        null
+    }
+}
+
+/**
+ * Decode string representation of base64
+ */
+fun String.fromBase64(): ByteArray? {
+    return Base64.decode(this, Base64.DEFAULT)
 }
 
 /**

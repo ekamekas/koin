@@ -2,8 +2,12 @@ package com.github.ekamekas.baha.common.ext
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.widget.Toast
 import androidx.annotation.DimenRes
+import androidx.annotation.DrawableRes
+import com.github.ekamekas.baha.common.BuildConfig
 import com.github.ekamekas.baha.common.view.dialog.ActionPromptDialog
 import com.github.ekamekas.baha.common.view.dialog.ProgressDialog
 
@@ -12,6 +16,7 @@ import com.github.ekamekas.baha.common.view.dialog.ProgressDialog
  */
 fun Context.dip(value: Int) = (value * resources.displayMetrics.density).toInt()
 fun Context.dimens(@DimenRes id: Int) = resources.getDimension(id).toInt()
+fun Context.drawable(@DrawableRes id: Int): Drawable = if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) resources.getDrawable(id) else resources.getDrawable(id, null)
 
 // dialog extension suite
 fun Context.buildDialogActionPrompt(

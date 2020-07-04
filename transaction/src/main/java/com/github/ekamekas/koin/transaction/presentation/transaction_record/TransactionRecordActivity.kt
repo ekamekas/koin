@@ -14,7 +14,6 @@ import com.github.ekamekas.koin.transaction.databinding.ActivityTransactionRecor
 import com.github.ekamekas.koin.transaction.presentation.ExtraCode
 import com.github.ekamekas.koin.transaction.presentation.view_object.TransactionRecordVO
 import com.github.ekamekas.koin.transaction.presentation.view_object.toDomain
-import kotlinx.android.synthetic.main.activity_transaction_record.*
 
 /**
  * Activity to create, update, and view transaction record
@@ -85,14 +84,14 @@ class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewMo
             when(state) {
                 is State.Success -> {
                     // move next page item
-                    vContent.currentItem = vContent.currentItem + 1
+                    dataBinding.vContent.currentItem = dataBinding.vContent.currentItem + 1
                 }
             }
         })
     }
 
     override fun setupViews() {
-        vNavigation.apply {
+        dataBinding.vNavigation.apply {
             setNavigationOnClickListener { onBackPressed() }
             setOnMenuItemClickListener { item ->
                 when(item.itemId) {
@@ -111,7 +110,7 @@ class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewMo
 
             }
         }
-        vContent.apply {
+        dataBinding.vContent.apply {
             adapter = TransactionRecordPageAdapter(this@TransactionRecordActivity)
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
         }
@@ -119,20 +118,20 @@ class TransactionRecordActivity: BaseActivityDataBinding<TransactionRecordViewMo
 
     override fun didSetup() {
         intent.getParcelableExtra<TransactionRecordVO>(ExtraCode.TRANSACTION_RECORD)?.also {
-            vNavigation.menu.findItem(R.id.action_add).title = getString(R.string.label_update_transaction)
+            dataBinding.vNavigation.menu.findItem(R.id.action_add).title = getString(R.string.label_update_transaction)
             viewModel.setTransactionRecord(it.toDomain())
         }.also {
-            vNavigation.menu.findItem(R.id.action_delete).isVisible = it != null
+            dataBinding.vNavigation.menu.findItem(R.id.action_delete).isVisible = it != null
         }
     }
 
     override fun onBackPressed() {
-        if(vContent.currentItem == 0) {
+        if(dataBinding.vContent.currentItem == 0) {
             // if user currently looking at the first page, then allow system to handle back button
             super.onBackPressed()
         } else {
             // otherwise, scroll to previous page
-            vContent.currentItem = vContent.currentItem - 1
+            dataBinding.vContent.currentItem = dataBinding.vContent.currentItem - 1
         }
     }
 

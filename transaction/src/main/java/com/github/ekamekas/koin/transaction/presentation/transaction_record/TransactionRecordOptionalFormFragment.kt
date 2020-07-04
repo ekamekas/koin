@@ -5,7 +5,6 @@ import android.app.TimePickerDialog
 import com.github.ekamekas.baha.core.presentation.fragment.BaseFragmentDataBinding
 import com.github.ekamekas.koin.transaction.R
 import com.github.ekamekas.koin.transaction.databinding.FragmentTransactionRecordOptionalFormBinding
-import kotlinx.android.synthetic.main.fragment_transaction_record_optional_form.*
 import java.util.*
 
 /**
@@ -55,10 +54,10 @@ class TransactionRecordOptionalFormFragment: BaseFragmentDataBinding<Transaction
     override fun setupObservers() {/*nop*/}
 
     override fun setupViews() {
-        ivDate.setOnClickListener {
+        dataBinding.ivDate.setOnClickListener {
             delegateDateInput()
         }
-        ivTime.setOnClickListener {
+        dataBinding.ivTime.setOnClickListener {
             delegateTimeInput()
         }
     }

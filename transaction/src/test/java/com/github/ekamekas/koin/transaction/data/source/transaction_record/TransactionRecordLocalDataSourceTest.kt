@@ -135,19 +135,21 @@ class TransactionRecordLocalDataSourceTest {
         runBlockingTest {
             // arrange
             val data = listOf(
-                TransactionRecord(
-                    transactionDate = 0L,
-                    transactionType = TransactionType.INCOME,
-                    value = 0.0
+                TransactionRecordAndCategoryDB(
+                    transactionRecord = TransactionRecordDB(
+                        transactionDate = 0L,
+                        transactionType = TransactionType.INCOME,
+                        value = 0.0
+                    )
                 )
             )
             Mockito.`when`(database.transactionRecordDAO().fetch())
-                .thenReturn(data.map { it.toDB() })
+                .thenReturn(data)
             // act
             val result = dataSource.fetchTransactionRecord()
             // assert
             Assert.assertTrue(result is Result.Success)
-            Assert.assertEquals(data, (result as? Result.Success)?.data)
+            Assert.assertEquals(data.map { it.toDomain() }, (result as? Result.Success)?.data)
         }
     }
     @Test
@@ -168,18 +170,20 @@ class TransactionRecordLocalDataSourceTest {
         runBlockingTest {
             // arrange
             val id = "test"
-            val data = TransactionRecord(
-                transactionDate = 0L,
-                transactionType = TransactionType.INCOME,
-                value = 0.0
+            val data = TransactionRecordAndCategoryDB(
+                transactionRecord = TransactionRecordDB(
+                    transactionDate = 0L,
+                    transactionType = TransactionType.INCOME,
+                    value = 0.0
+                )
             )
             Mockito.`when`(database.transactionRecordDAO().fetch(id))
-                .thenReturn(data.toDB())
+                .thenReturn(data)
             // act
             val result = dataSource.fetchTransactionRecord(id)
             // assert
             Assert.assertTrue(result is Result.Success)
-            Assert.assertEquals(data, (result as? Result.Success)?.data)
+            Assert.assertEquals(data.toDomain(), (result as? Result.Success)?.data)
         }
     }
 
