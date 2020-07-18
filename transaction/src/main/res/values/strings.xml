@@ -31,4 +31,5 @@
     <string name="label_update_transaction">Update</string>
     <string name="label_transaction_category">Category</string>
     <string name="label_name">Name</string>
+    <string name="label_balance">Balance</string>
 </resources>
