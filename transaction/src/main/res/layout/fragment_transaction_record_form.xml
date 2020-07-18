@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorOnPrimaryDark"
-                    android:text="@{viewModel.transactionCategory.name}"
+                    android:text='@{viewModel.transactionCategory.name != null ? viewModel.transactionCategory.name : "-"}'
                     style="@style/TextAppearance.AppCompat.Title"
                     tools:text="Others"/>
 
