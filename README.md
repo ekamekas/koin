@@ -1,5 +1,7 @@
 # Koin
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bacc2a1c288b4a53a9f043f3126303cb)](https://app.codacy.com/manual/ekamekas/koin?utm_source=github.com&utm_medium=referral&utm_content=ekamekas/koin&utm_campaign=Badge_Grade_Settings)
+
 Kemudahan untuk mengatur keuangan finansial dari dalam saku Anda.
 
 ## Getting Started
