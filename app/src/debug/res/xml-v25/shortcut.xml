@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="add_transaction"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:shortcutShortLabel="@string/label_shortcut_add_transaction"
+        android:shortcutLongLabel="@string/label_shortcut_add_transaction"
+        android:shortcutDisabledMessage="@string/label_shortcut_add_transaction">
+        <intent
+            android:action="ADD_TRANSACTION"
+            android:targetPackage="com.github.ekamekas.koin.dev"
+            android:targetClass="com.github.ekamekas.koin.presentation.splash.SplashActivity" />
+    </shortcut>
+</shortcuts>
