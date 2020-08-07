@@ -7,7 +7,14 @@
         android:theme="@style/CoreTheme">
 
         <activity
-            android:name=".presentation.transaction_record.TransactionRecordActivity"/>
+            android:name=".presentation.transaction_record.TransactionRecordActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".presentation.transaction_category.TransactionCategoryActivity"/>
         <activity
