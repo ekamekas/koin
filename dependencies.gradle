@@ -1,0 +1,104 @@
+// This define project dependencies
+
+// app version
+def app_version = [:]
+app_version.application_id = 'com.github.ekamekas.koin'
+app_version.version_name = generateVersionName()
+app_version.version_code = generateVersionCode()
+ext.app_version = app_version
+
+// build versioning
+def build_version = [:]
+build_version.build_tools = '29.0.3'
+build_version.gradle = '3.6.3'
+build_version.kotlin = '1.3.71'
+build_version.sdk_min = 21
+build_version.sdk_target = 29
+ext.build_version = build_version
+
+// dependency versioning
+def dependency_version = [:]
+dependency_version.app_compat = '1.1.0'
+dependency_version.arch = '2.1.0'
+dependency_version.constraint_layout = '1.1.0'
+dependency_version.coroutine = "1.3.6"
+dependency_version.dagger = "2.27"
+dependency_version.espresso = '3.2.0'
+dependency_version.junit = '4.12'
+dependency_version.kotlin_serialization = '0.20.0'
+dependency_version.ktx = '1.2.0'
+dependency_version.lifecycle = '2.2.0'
+dependency_version.material = '1.1.0'
+dependency_version.mockito = '3.3.3'
+dependency_version.recycler_view = '1.1.0'
+dependency_version.robolectric = '4.3'
+dependency_version.room = '2.2.5'
+dependency_version.timber = '4.7.1'
+dependency_version.testx = '1.2.0'
+dependency_version.testx_junit = '1.1.1'
+
+def core = [:]
+core.app_compat = "androidx.appcompat:appcompat:$dependency_version.app_compat"
+core.core_ktx = "androidx.core:core-ktx:$dependency_version.ktx"
+core.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$build_version.kotlin"
+core.lifecycle_compiler = "androidx.lifecycle:lifecycle-common-java8:$dependency_version.lifecycle"
+core.lifecycle_core = "androidx.lifecycle:lifecycle-runtime-ktx:$dependency_version.lifecycle"
+core.lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$dependency_version.lifecycle"
+core.lifecycle_test = "androidx.arch.core:core-testing:$dependency_version.arch"
+core.lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$dependency_version.lifecycle"
+core.room = "androidx.room:room-runtime:$dependency_version.room"
+core.room_compiler = "androidx.room:room-compiler:$dependency_version.room"
+core.room_ktx = "androidx.room:room-ktx:$dependency_version.room"
+core.room_test = "androidx.room:room-testing:$dependency_version.room"
+core.serialize = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$dependency_version.kotlin_serialization"
+ext.core = core
+
+def dependency_injection = [:]
+dependency_injection.core = "com.google.dagger:dagger:$dependency_version.dagger"
+dependency_injection.core_compiler = "com.google.dagger:dagger-compiler:$dependency_version.dagger"
+dependency_injection.android = "com.google.dagger:dagger-android:$dependency_version.dagger"
+dependency_injection.android_compiler = "com.google.dagger:dagger-android-processor:$dependency_version.dagger"
+dependency_injection.android_support = "com.google.dagger:dagger-android-support:$dependency_version.dagger"
+ext.dependency_injection = dependency_injection
+
+def log = [:]
+log.core = "com.jakewharton.timber:timber:$dependency_version.timber"
+ext.log = log
+
+def testing = [:]
+testing.espresso = "androidx.test.espresso:espresso-core:$dependency_version.espresso"
+testing.espresso_intents = "androidx.test.espresso:espresso-intents:$dependency_version.espresso"
+testing.junit = "junit:junit:$dependency_version.junit"
+testing.mockito = "org.mockito:mockito-core:$dependency_version.mockito"
+testing.robolectric = "org.robolectric:robolectric:$dependency_version.robolectric"
+testing.testx_core = "androidx.test:core:$dependency_version.testx"
+testing.testx_junit = "androidx.test.ext:junit:$dependency_version.testx_junit"
+testing.testx_runner = "androidx.test:runner:$dependency_version.testx"
+testing.testx_truth = "androidx.test.ext:truth:$dependency_version.testx"
+ext.testing = testing
+
+def threading = [:]
+threading.core = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$dependency_version.coroutine"
+threading.test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$dependency_version.coroutine"
+ext.threading = threading
+
+def ui = [:]
+ui.constraint_layout = "androidx.constraintlayout:constraintlayout:$dependency_version.constraint_layout"
+ui.material = "com.google.android.material:material:$dependency_version.material"
+ui.recycler_view = "androidx.recyclerview:recyclerview:$dependency_version.recycler_view"
+ext.ui = ui
+
+def utility = [:]
+ext.utility = utility
+
+// generate version name by date
+static def generateVersionName() {
+    return "0.0.1"
+}
+
+// generate version code by epoch second
+static def generateVersionCode() {
+    int MILLIS_IN_MINUTES = 1000 * 60
+    int minutesSinceEpoch = System.currentTimeMillis() / MILLIS_IN_MINUTES
+    return minutesSinceEpoch
+}

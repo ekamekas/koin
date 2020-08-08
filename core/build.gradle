@@ -1,0 +1,83 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_version.sdk_target
+    buildToolsVersion build_version.build_tools
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion build_version.sdk_target
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // module implementation
+    api project(':common')
+
+    // core
+    api core.app_compat
+    api core.core_ktx
+    api core.stdlib
+    kapt core.lifecycle_compiler
+    api core.lifecycle_core
+    api core.lifecycle_livedata
+    api core.lifecycle_test
+    api core.lifecycle_viewmodel
+
+    // dependency injection
+    api dependency_injection.core
+    kapt dependency_injection.core_compiler
+    api dependency_injection.android
+    kapt dependency_injection.android_compiler
+    api dependency_injection.android_support
+
+    // layout
+    api ui.material
+
+    // logging
+    api log.core
+
+    // threading
+    api threading.core
+    api threading.test
+
+    // testing
+    androidTestImplementation testing.espresso
+    testImplementation testing.junit
+    testImplementation testing.mockito
+    androidTestImplementation testing.testx_junit
+}

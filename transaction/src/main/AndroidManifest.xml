@@ -1,0 +1,25 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.ekamekas.koin.transaction">
+
+    <application
+        android:allowBackup="false"
+        android:supportsRtl="true"
+        android:theme="@style/CoreTheme">
+
+        <activity
+            android:name=".presentation.transaction_record.TransactionRecordActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".presentation.transaction_category.TransactionCategoryActivity"/>
+        <activity
+            android:name=".presentation.transaction_category.create.TransactionCategoryCreateActivity"/>
+
+    </application>
+
+</manifest>

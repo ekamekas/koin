@@ -1,0 +1,5 @@
+rootProject.name='Koin'
+include ':app'
+include ':core'
+include ':common'
+include ':transaction'

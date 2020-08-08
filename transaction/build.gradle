@@ -1,0 +1,104 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlinx-serialization'
+
+android {
+    compileSdkVersion build_version.sdk_target
+    buildToolsVersion build_version.build_tools
+
+    defaultConfig {
+        minSdkVersion build_version.sdk_min
+        targetSdkVersion build_version.sdk_target
+        versionCode app_version.version_code
+        versionName app_version.version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/*'
+    }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    sourceSets {
+        // Adds exported schema location as test app assets.
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // module implementation
+    implementation project(':core')
+
+    // core
+    kapt core.lifecycle_compiler
+    implementation core.serialize
+    api core.room
+    kapt core.room_compiler
+    implementation core.room_ktx
+
+    // dependency injection
+    kapt dependency_injection.core_compiler
+    kapt dependency_injection.android_compiler
+
+    // layout
+    implementation ui.constraint_layout
+
+    // testing
+    testImplementation testing.espresso
+    testImplementation testing.espresso_intents
+    testImplementation testing.junit
+    testImplementation testing.mockito
+    testImplementation testing.robolectric
+    testImplementation testing.testx_core
+    testImplementation testing.testx_junit
+    testImplementation testing.testx_runner
+    testImplementation testing.testx_truth
+    androidTestImplementation testing.espresso
+    androidTestImplementation testing.espresso_intents
+    androidTestImplementation core.room_test
+    androidTestImplementation testing.testx_core
+    androidTestImplementation testing.testx_junit
+    androidTestImplementation testing.testx_runner
+    androidTestImplementation testing.testx_truth
+}

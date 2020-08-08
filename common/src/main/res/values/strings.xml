@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint_data_empty">You don\'t have any records</string>
+    <string name="hint_wip">this feature is under construction</string>
+    <string name="hint_create_operation_failed_format">Failed to create %s</string>
+    <string name="hint_create_operation_success_format">Success to create %s</string>
+    <string name="hint_delete_operation_failed_format">Failed to delete %s</string>
+    <string name="hint_delete_operation_success_format">Success to delete %s</string>
+    <string name="hint_get_operation_failed_format">Failed to get %s</string>
+    <string name="hint_get_operation_success_format">Success to get %s</string>
+    <string name="hint_update_operation_failed_format">Failed to update %s</string>
+    <string name="hint_update_operation_success_format">Success to update %s</string>
+    <string name="hint_delete_operation_prompt">Are you sure to delete this record?</string>
+    <string name="label_date">Date</string>
+    <string name="label_time">Time</string>
+</resources>

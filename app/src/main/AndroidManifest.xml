@@ -1,0 +1,27 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.ekamekas.koin">
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:name=".Koin"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/CoreTheme">
+
+        <activity
+            android:name=".presentation.dashboard.DashboardActivity"/>
+        <activity android:name="com.github.ekamekas.koin.presentation.splash.SplashActivity">
+            <!-- Main entry activity, should appear in app launcher  -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <meta-data android:name="android.app.shortcuts"
+                android:resource="@xml/shortcut" />
+        </activity>
+
+    </application>
+</manifest>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="transaction_record">transaction_record</string>
+    <string name="label_add_transaction">Add</string>
+    <string name="label_edit_transaction">Edit</string>
+    <string name="label_delete_transaction">Delete</string>
+    <string name="label_widget_keyboard_key_1">1</string>
+    <string name="label_widget_keyboard_key_2">2</string>
+    <string name="label_widget_keyboard_key_3">3</string>
+    <string name="label_widget_keyboard_key_4">4</string>
+    <string name="label_widget_keyboard_key_5">5</string>
+    <string name="label_widget_keyboard_key_6">6</string>
+    <string name="label_widget_keyboard_key_7">7</string>
+    <string name="label_widget_keyboard_key_8">8</string>
+    <string name="label_widget_keyboard_key_9">9</string>
+    <string name="label_widget_keyboard_key_decimal">.</string>
+    <string name="label_widget_keyboard_key_0">0</string>
+    <string name="label_widget_keyboard_key_remove">c</string>
+    <string name="label_widget_keyboard_key_addition">+</string>
+    <string name="label_widget_keyboard_key_multiplication">x</string>
+    <string name="label_widget_keyboard_key_decrease">-</string>
+    <string name="label_widget_keyboard_key_division">/</string>
+    <string name="label_widget_keyboard_key_summation">=</string>
+    <string name="label_default_currency">IDR</string>
+    <string name="label_default_currency_format">IDR %s</string>
+    <string name="label_transaction">Transaction</string>
+    <string name="label_expense">Expense</string>
+    <string name="label_income">Income</string>
+    <string name="value_default">0</string>
+    <string name="label_description">Description</string>
+    <string name="label_update_transaction">Update</string>
+    <string name="label_transaction_category">Category</string>
+    <string name="label_name">Name</string>
+    <string name="label_balance">Balance</string>
+</resources>
